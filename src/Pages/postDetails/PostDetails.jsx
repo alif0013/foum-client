@@ -6,7 +6,7 @@ import { useLoaderData } from 'react-router-dom';
 import { RiShareForwardLine } from "react-icons/ri";
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
+import useComments from '../../hooks/useComments';
 
 
 const PostDetails = () => {
@@ -15,15 +15,11 @@ const PostDetails = () => {
     const posts = useLoaderData()
     const axiosSecure = useAxiosSecure();
 
-    const { _id, title, tags, currentTime, userImg, date, description, email, name, upvote } = posts;
+    const [comments, refetch] = useComments()
 
-    const { data: comments = [], refetch } = useQuery({
-        queryKey: ['comments'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/comments');
-            return res.data;
-        }
-    })
+    const { _id, title, tags, currentTime, userImg, date, description, downvote, name, upvote } = posts;
+
+    
 
     const handleComments = e => {
         e.preventDefault();
@@ -54,6 +50,19 @@ const PostDetails = () => {
     const handleUpvote = id => {
 
         axiosSecure.patch(`/posts/vote/${id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+
+                    refetch();
+
+                }
+            })
+    }
+
+    const handleDownVote = id => {
+
+        axiosSecure.patch(`/posts/downVote/${id}`)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
@@ -100,9 +109,9 @@ const PostDetails = () => {
                         <BiUpvote className="text-xl"></BiUpvote>
                     </button> {upvote}
 
-                    <button className='btn'>
+                    <button onClick={() => handleDownVote(_id)} className='btn'>
                         <BiDownvote className="text-xl"></BiDownvote>
-                    </button>
+                    </button> {downvote}
 
 
                     <RiShareForwardLine className="text-xl"></RiShareForwardLine>

@@ -16,8 +16,10 @@ import ReportedComment from '../Pages/AdminDashboard/ReportedComment/ReportedCom
 import Announcement from '../Pages/AdminDashboard/Announcement/Announcement';
 import AdminProfile from '../Pages/AdminProfile/AdminProfile';
 import CommentDetails from '../Pages/UserDashboard/MyPost/CommentDetails';
+import PrivateRoutes from './PrivateRoutes';
+import Payment from '../Pages/UserDashboard/Payment/Payment';
 
-const  myCreatedRoutes = createBrowserRouter([
+const myCreatedRoutes = createBrowserRouter([
     {
         path: '/',
         element: <MainLayouts></MainLayouts>,
@@ -28,22 +30,34 @@ const  myCreatedRoutes = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path:'/membership',
-                element: <Membership></Membership>
+                path: '/membership',
+                element: <PrivateRoutes><Membership></Membership></PrivateRoutes>
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
-                path:'/register',
+                path: '/register',
                 element: <Register></Register>
             },
             {
                 path: '/details/:id',
-                element: <PostDetails></PostDetails> ,
-                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+                element: <PrivateRoutes><PostDetails></PostDetails></PrivateRoutes> ,
+                loader: ({ params }) => fetch(`https://smart-forum-server.vercel.app/posts/${params.id}`)
+           
+            },
+            {
+                path: '/comments-details',
+                element: <CommentDetails></CommentDetails>,
+              
+
+            },
+            {
+                path: '/payment',
+                element: <Payment></Payment>
             }
+
         ]
     },
     {
@@ -61,7 +75,7 @@ const  myCreatedRoutes = createBrowserRouter([
             {
                 path: 'myPost',
                 element: <MyPost></MyPost>,
-                
+
             },
 
             //admin route
@@ -81,15 +95,11 @@ const  myCreatedRoutes = createBrowserRouter([
                 path: 'announcement',
                 element: <Announcement></Announcement>
             },
-            // {
-            //     path: 'comments-details/:id',
-            //     element: <CommentDetails></CommentDetails> ,
-              
-            // }
-            
-          
+
+
+
         ]
     }
 ])
 
-export default  myCreatedRoutes;
+export default myCreatedRoutes;

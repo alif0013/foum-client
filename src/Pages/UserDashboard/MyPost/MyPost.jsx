@@ -6,12 +6,12 @@ import { MdOutlineDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 
 const MyPost = () => {
 
     const [myPost, refetch] = useMyPost()
+    
 
     const axiosSecure = useAxiosSecure();
 
@@ -81,7 +81,7 @@ const MyPost = () => {
 
                                         <td>{post.title}</td>
                                         <td>{post.upvote}</td>
-                                        <td> <Link className="btn"><FaRegCommentAlt></FaRegCommentAlt></Link> </td>
+                                        <td> <Link to={`/comments-details`} className="btn"><FaRegCommentAlt></FaRegCommentAlt></Link> </td>
                                         <td> <button onClick={() => handleDelete(post._id)} className="btn text-xl text-red-600"><MdOutlineDelete></MdOutlineDelete></button> </td>
 
                                     </tr>

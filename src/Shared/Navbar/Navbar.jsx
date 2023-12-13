@@ -10,6 +10,12 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [announcements, refetch] = useAnnouncement()
 
+    
+    // use theme from local storage if available or set light theme
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    );
+    
     // sign out functionalities
     const handleLogOut = () => {
         logOut()
