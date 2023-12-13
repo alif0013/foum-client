@@ -46,6 +46,11 @@ const Dashboard = () => {
                                     <CiBullhorn className='text-xl'></CiBullhorn> Announcement
                                 </NavLink>
                             </li>
+                            <li className='bg-white my-2 rounded-lg'>
+                                <NavLink to="/dashboard/subscriber">
+                                    <FaUsers className='text-xl'></FaUsers> Subscriber
+                                </NavLink>
+                            </li>
 
                             </>
                             :

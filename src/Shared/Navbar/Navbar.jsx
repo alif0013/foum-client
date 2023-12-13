@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.jpg'
 import { AuthContext } from '../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useAnnouncement from '../../hooks/useAnnouncement';

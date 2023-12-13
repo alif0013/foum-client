@@ -18,6 +18,7 @@ import AdminProfile from '../Pages/AdminProfile/AdminProfile';
 import CommentDetails from '../Pages/UserDashboard/MyPost/CommentDetails';
 import PrivateRoutes from './PrivateRoutes';
 import Payment from '../Pages/UserDashboard/Payment/Payment';
+import Subscriber from '../Pages/AdminDashboard/Subscriber/Subscriber';
 
 const myCreatedRoutes = createBrowserRouter([
     {
@@ -94,6 +95,10 @@ const myCreatedRoutes = createBrowserRouter([
             {
                 path: 'announcement',
                 element: <Announcement></Announcement>
+            },
+            {
+                path: 'subscriber',
+                element: <Subscriber></Subscriber>
             },
 
 

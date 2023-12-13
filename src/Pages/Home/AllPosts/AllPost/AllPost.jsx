@@ -18,7 +18,7 @@ const AllPost = () => {
 
             {/* <h1 className="text-6xl">All Post: {posts.length}</h1> */}
 
-            <div className='px-5'>
+            <div className='px-5 mb-20'>
                 {
                     posts.map(post => <PostCard post={post} key={post._id}></PostCard>).reverse()
                 

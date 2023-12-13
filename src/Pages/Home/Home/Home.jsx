@@ -4,6 +4,7 @@ import TagSection from '../../TagSection/TagSection';
 import AllPost from '../AllPosts/AllPost/AllPost';
 import { Helmet } from 'react-helmet-async';
 import AnnouncementSection from '../AnnouncementSection/AnnouncementSection';
+import Subscription from '../Subscription/Subscription';
 
 const Home = () => {
     return (
@@ -18,6 +19,8 @@ const Home = () => {
            <AnnouncementSection></AnnouncementSection>
 
             <AllPost></AllPost>
+
+            <Subscription></Subscription>
         </div>
     );
 };
